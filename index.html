@@ -506,6 +506,23 @@
   </div>
 
   <script>
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzzsfei0QNy6IWJ3RGM1kMPMN2ExA3VTFAwJcep8PuFKop1lKwt23DeOdIuFpqbHxtW/exec";
+
+function sendChoice(action, value = "") {
+  fetch(GOOGLE_SCRIPT_URL, {
+    method: "POST",
+    mode: "no-cors",
+    headers: {
+      "Content-Type": "text/plain;charset=utf-8"
+    },
+    body: JSON.stringify({
+      action,
+      value,
+      page: location.href,
+      timestamp: new Date().toISOString()
+    })
+  });
+}
     const floatingHearts = document.getElementById('floatingHearts');
     const heartIcons = ['♡','♥','·'];
 
@@ -539,6 +556,7 @@
     ];
 
     noBtn.addEventListener('click', () => {
+      sendChoice("answer", "Nein");
       noCount++;
 
       const noScale = Math.max(.12, 1 - noCount * .15);
@@ -579,6 +597,8 @@
     }
 
     yesBtn.addEventListener('click', () => {
+      sendChoice("answer", "Ja");
+
       celebrate();
       modal.classList.add('show');
       modal.setAttribute('aria-hidden','false');
@@ -602,20 +622,27 @@
         document.querySelectorAll('.time-btn').forEach(b => b.classList.remove('selected'));
         btn.classList.add('selected');
         selectedTime = btn.dataset.time;
+
+        sendChoice("time_selected", selectedTime);
       });
     });
 
     document.getElementById('confirmBtn').addEventListener('click', () => {
-      const message = document.getElementById('message').value.trim();
-      const result = document.getElementById('result');
+  const message = document.getElementById('message').value.trim();
+  const result = document.getElementById('result');
 
-      if(!selectedTime){
-        result.classList.add('show');
-        result.innerHTML = 'Bitte wähle 12:00 oder 13:00.';
-        return;
-      }
+  if(!selectedTime){
+    result.classList.add('show');
+    result.innerHTML = 'Bitte wähle 12:00 oder 13:00.';
+    return;
+  }
 
-      const timeText = selectedTime === '12:00' ? '12시' : '1시';
+  sendChoice("date_confirmed", JSON.stringify({
+    time: selectedTime,
+    message: message
+  }));
+
+      const timeText = selectedTime === '12:00' ? '12:00' : '13:00';
 
       result.classList.add('show');
       result.innerHTML = `
