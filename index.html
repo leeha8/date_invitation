@@ -1,679 +1,2113 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="de">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Möchtest du mit mir auf ein Date gehen?</title>
-  
+
+  <title>Date am 4. September</title>
+
   <style>
     :root{
-      --ivory:#f5f0e8;
-      --paper:#fffdf9;
-      --wine:#7a2434;
-      --wine-dark:#5d1825;
-      --charcoal:#282828;
-      --muted:#7b746d;
-      --line:#d9d1c7;
-      --soft:#eee7df;
+      --navy:#16202b;
+      --navy2:#202d3a;
+      --sand:#ede4d5;
+      --paper:#f8f4ed;
+      --gold:#b79a68;
+      --gold2:#d2bd94;
+      --text:#222;
+      --muted:#777069;
+      --line:#d9d0c4;
+      --white:#fff;
     }
 
-    *{box-sizing:border-box}
+    *{
+      box-sizing:border-box;
+    }
 
-    html,body{
+    html,
+    body{
       margin:0;
       min-height:100%;
-      font-family:Inter, "Helvetica Neue", Arial, sans-serif;
+      font-family:Arial, Helvetica, sans-serif;
     }
 
     body{
-      min-height:100vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:28px;
-      color:var(--charcoal);
+      color:var(--text);
+
       background:
-        linear-gradient(rgba(255,255,255,.2),rgba(255,255,255,.2)),
-        var(--ivory);
+        radial-gradient(
+          circle at 15% 15%,
+          rgba(210,189,148,.15),
+          transparent 25%
+        ),
+        radial-gradient(
+          circle at 90% 80%,
+          rgba(255,255,255,.05),
+          transparent 25%
+        ),
+        linear-gradient(
+          145deg,
+          #111a23,
+          #1c2935 55%,
+          #16202b
+        );
+
+      padding:30px 15px;
     }
 
-    .floating-hearts{
-      position:fixed;
-      inset:0;
-      overflow:hidden;
-      pointer-events:none;
-      z-index:0;
+    .page{
+      width:min(900px,100%);
+      margin:auto;
+
+      background:var(--paper);
+
+      border:1px solid rgba(255,255,255,.2);
+
+      box-shadow:
+        0 30px 90px rgba(0,0,0,.28);
+
+      min-height:700px;
     }
 
-    .heart{
-      position:absolute;
-      bottom:-40px;
-      opacity:.11;
-      animation:floatUp linear infinite;
-      filter:grayscale(.3);
-      font-size:18px !important;
+    /* HEADER */
+
+    header{
+      padding:
+        clamp(35px,6vw,70px)
+        clamp(22px,6vw,60px)
+        35px;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--navy),
+          var(--navy2)
+        );
+
+      color:white;
     }
 
-    @keyframes floatUp{
-      0%{transform:translateY(0) rotate(0deg);opacity:0}
-      15%{opacity:.12}
-      80%{opacity:.1}
-      100%{transform:translateY(-115vh) rotate(18deg);opacity:0}
-    }
+    .small-title{
+      margin:0 0 15px;
 
-    .wrap{
-      width:min(820px,100%);
-      position:relative;
-      z-index:2;
-    }
+      color:var(--gold2);
 
-    .card{
-      position:relative;
-      padding:clamp(34px,6vw,70px);
-      background:rgba(255,253,249,.93);
-      border:1px solid var(--line);
-      border-radius:4px;
-      box-shadow:0 24px 70px rgba(40,30,20,.08);
-    }
+      font-size:11px;
+      font-weight:bold;
 
-    .spark,
-    .characters{
-      display:none;
-    }
-
-    .eyebrow{
-      text-align:center;
-      margin:0 0 20px;
-      font-size:12px;
       letter-spacing:.22em;
+
       text-transform:uppercase;
-      color:var(--wine);
-      font-weight:700;
     }
 
     h1{
-      text-align:center;
       margin:0;
-      color:var(--charcoal);
-      font-family:Georgia, "Times New Roman", serif;
-      font-size:clamp(42px,7vw,72px);
+
+      font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
       font-weight:400;
-      letter-spacing:-.045em;
-      line-height:1.03;
+
+      font-size:
+        clamp(42px,7vw,72px);
+
+      line-height:1;
+
+      letter-spacing:-.04em;
     }
 
-    .subtitle{
-      max-width:560px;
-      margin:22px auto 42px;
-      text-align:center;
-      color:var(--muted);
+    .intro{
+      max-width:580px;
+
+      margin:22px 0 0;
+
+      color:#d7dce0;
+
+      line-height:1.7;
+
       font-size:15px;
-      line-height:1.8;
     }
 
-    .question-box{
-      padding:34px 24px 28px;
-      text-align:center;
-      border-top:1px solid var(--line);
-      border-bottom:1px solid var(--line);
-      background:transparent;
-      box-shadow:none;
-      border-radius:0;
+    /* PROGRESS */
+
+    .progress{
+      display:grid;
+
+      grid-template-columns:
+        repeat(5,1fr);
+
+      gap:7px;
+
+      padding:
+        22px
+        clamp(22px,6vw,60px)
+        0;
     }
 
-    .question{
-      margin:0 0 30px;
-      color:var(--wine-dark);
-      font-family:Georgia, "Times New Roman", serif;
-      font-size:clamp(30px,5vw,48px);
-      font-weight:400;
-      line-height:1.15;
+    .progress div{
+      height:3px;
+
+      background:#ded8ce;
+
+      transition:.25s;
     }
 
-    .button-area{
-      min-height:116px;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      gap:14px;
-      flex-wrap:wrap;
+    .progress div.active{
+      background:var(--gold);
     }
 
-    button{
-      border-radius:2px;
-      font-family:inherit;
-      font-weight:600;
-      cursor:pointer;
-      letter-spacing:.02em;
-      transition:
-        transform .22s ease,
-        padding .22s ease,
-        box-shadow .22s ease,
-        opacity .22s ease,
-        background .22s ease;
-    }
+    /* STEPS */
 
-    #yesBtn{
-      padding:15px 34px;
-      font-size:16px;
-      color:#fff;
-      border:1px solid var(--wine);
-      background:var(--wine);
-      box-shadow:none;
-      transform-origin:center;
-    }
-
-    #yesBtn:hover{
-      background:var(--wine-dark);
-      border-color:var(--wine-dark);
-    }
-
-    #noBtn{
-      padding:14px 30px;
-      font-size:15px;
-      color:var(--charcoal);
-      border:1px solid var(--line);
-      background:transparent;
-      box-shadow:none;
-    }
-
-    #noBtn:hover{
-      background:var(--soft);
-    }
-
-    .tiny-note{
-      min-height:20px;
-      margin-top:14px;
-      color:#928980;
-      font-size:12px;
-      font-style:italic;
-    }
-
-    .modal{
+    .step{
       display:none;
-      position:fixed;
-      inset:0;
-      z-index:20;
-      align-items:center;
-      justify-content:center;
-      padding:22px;
-      background:rgba(27,23,20,.45);
-      backdrop-filter:blur(7px);
+
+      padding:
+        40px
+        clamp(22px,6vw,60px)
+        50px;
+
+      animation:fade .3s ease;
     }
 
-    .modal.show{
-      display:flex;
-      animation:fade .2s ease;
+    .step.active{
+      display:block;
     }
 
     @keyframes fade{
-      from{opacity:0}
-      to{opacity:1}
+      from{
+        opacity:0;
+        transform:translateY(8px);
+      }
+
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
     }
 
-    .modal-card{
-      position:relative;
-      width:min(560px,100%);
-      max-height:92vh;
-      overflow:auto;
-      padding:38px;
-      background:var(--paper);
-      border:1px solid var(--line);
-      border-radius:4px;
-      box-shadow:0 30px 90px rgba(20,15,10,.24);
-      animation:pop .28s ease;
-    }
+    .step-number{
+      margin-bottom:10px;
 
-    @keyframes pop{
-      from{transform:translateY(14px);opacity:0}
-      to{transform:translateY(0);opacity:1}
-    }
+      color:var(--gold);
 
-    .close{
-      position:absolute;
-      right:16px;
-      top:14px;
-      width:36px;
-      height:36px;
-      padding:0;
-      border:1px solid var(--line);
-      background:transparent;
-      color:var(--charcoal);
-      font-size:19px;
-    }
-
-    .modal-title{
-      margin:4px 0 8px;
-      text-align:center;
-      color:var(--charcoal);
-      font-family:Georgia, "Times New Roman", serif;
-      font-size:34px;
-      font-weight:400;
-    }
-
-    .modal-desc{
-      margin:0 0 26px;
-      text-align:center;
-      color:var(--muted);
-      line-height:1.6;
-    }
-
-    .field{margin:18px 0}
-
-    label{
-      display:block;
-      margin-bottom:8px;
-      color:var(--charcoal);
-      font-size:13px;
-      font-weight:700;
-      letter-spacing:.03em;
-    }
-
-    input,textarea{
-      width:100%;
-      padding:13px 14px;
-      color:var(--charcoal);
-      font:inherit;
-      background:#fff;
-      border:1px solid var(--line);
-      border-radius:2px;
-      outline:none;
-    }
-
-    input:focus,textarea:focus{
-      border-color:var(--wine);
-      box-shadow:0 0 0 2px rgba(122,36,52,.07);
-    }
-
-    textarea{
-      min-height:86px;
-      resize:vertical;
-    }
-
-    .time-choice{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:10px;
-    }
-
-    .time-btn{
-      padding:15px;
-      color:var(--charcoal);
-      background:transparent;
-      border:1px solid var(--line);
-      font-size:15px;
-    }
-
-    .time-btn.selected{
-      color:#fff;
-      background:var(--wine);
-      border-color:var(--wine);
-      transform:none;
-      box-shadow:none;
-    }
-
-    .place-card{
-      display:flex;
-      align-items:center;
-      gap:14px;
-      margin:22px 0;
-      padding:17px 0;
-      background:transparent;
-      border-top:1px solid var(--line);
-      border-bottom:1px solid var(--line);
-      border-left:0;
-      border-right:0;
-      border-radius:0;
-    }
-
-    .place-emoji{
-      width:34px;
-      font-size:22px;
-      filter:grayscale(.25);
-    }
-
-    .place-label{
-      margin-bottom:4px;
-      color:var(--muted);
       font-size:11px;
-      letter-spacing:.12em;
+      font-weight:bold;
+
+      letter-spacing:.15em;
+
       text-transform:uppercase;
     }
 
-    .place-name{
-      color:var(--charcoal);
-      font-family:Georgia, "Times New Roman", serif;
-      font-size:21px;
+    h2{
+      margin:0 0 12px;
+
+      font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+      font-weight:400;
+
+      font-size:
+        clamp(31px,5vw,48px);
+
+      letter-spacing:-.025em;
+    }
+
+    .lead{
+      margin:0 0 28px;
+
+      color:var(--muted);
+
+      line-height:1.7;
+    }
+
+    /* DATE */
+
+    .date-box{
+      display:flex;
+
+      align-items:center;
+
+      gap:22px;
+
+      padding:26px;
+
+      margin-top:28px;
+
+      border:
+        1px solid var(--line);
+
+      background:#fff;
+    }
+
+    .date-day{
+      font-family:
+        Georgia,
+        serif;
+
+      font-size:66px;
+
+      color:var(--navy);
+    }
+
+    .date-text strong{
+      display:block;
+
+      font-family:
+        Georgia,
+        serif;
+
+      font-size:26px;
+
+      font-weight:400;
+
+      margin-bottom:6px;
+    }
+
+    .date-text span{
+      color:var(--muted);
+    }
+
+    /* CHOICES */
+
+    .grid{
+      display:grid;
+
+      grid-template-columns:
+        repeat(2,1fr);
+
+      gap:14px;
+    }
+
+    .choice{
+      min-height:155px;
+
+      padding:20px;
+
+      background:white;
+
+      border:
+        1px solid var(--line);
+
+      cursor:pointer;
+
+      transition:.2s;
+
+      display:flex;
+
+      flex-direction:column;
+    }
+
+    .choice:hover{
+      transform:translateY(-2px);
+
+      border-color:#b7aa99;
+    }
+
+    .choice.selected{
+      border-color:var(--gold);
+
+      box-shadow:
+        inset 0 0 0 1px var(--gold);
+
+      background:#fbf8f2;
+    }
+
+    .category{
+      margin-bottom:8px;
+
+      color:var(--gold);
+
+      font-size:10px;
+
+      font-weight:bold;
+
+      letter-spacing:.13em;
+
+      text-transform:uppercase;
+    }
+
+    .choice-title{
+      margin-bottom:8px;
+
+      font-family:
+        Georgia,
+        serif;
+
+      font-size:23px;
+    }
+
+    .choice-text{
+      color:var(--muted);
+
+      font-size:13px;
+
+      line-height:1.55;
+
+      flex:1;
+    }
+
+    .map-link{
+      width:max-content;
+
+      margin-top:16px;
+
+      color:var(--navy);
+
+      text-decoration:none;
+
+      font-size:12px;
+
+      border-bottom:
+        1px solid currentColor;
+    }
+
+    /* OTHER */
+
+    .other-box{
+      display:none;
+
+      margin-top:14px;
+
+      padding:15px;
+
+      background:#eee8de;
+
+      border:
+        1px solid var(--line);
+    }
+
+    .other-box.show{
+      display:block;
+    }
+
+    input{
+      width:100%;
+
+      padding:13px;
+
+      border:
+        1px solid #c8bdb0;
+
+      font:inherit;
+
+      outline:none;
+
+      background:white;
+    }
+
+    input:focus{
+      border-color:var(--gold);
+    }
+
+    /* ACTIVITY */
+
+    .activity-grid{
+      display:grid;
+
+      grid-template-columns:
+        1fr 1fr;
+
+      gap:14px;
+    }
+
+    .activity{
+      padding:25px;
+
+      min-height:130px;
+
+      background:white;
+
+      border:
+        1px solid var(--line);
+
+      cursor:pointer;
+    }
+
+    .activity.selected{
+      border-color:var(--gold);
+
+      box-shadow:
+        inset 0 0 0 1px var(--gold);
+    }
+
+    .activity strong{
+      display:block;
+
+      margin-bottom:10px;
+
+      font-family:
+        Georgia,
+        serif;
+
+      font-size:24px;
+
       font-weight:400;
     }
 
-    .confirm{
-      width:100%;
-      margin-top:14px;
-      padding:15px 22px;
-      color:#fff;
-      background:var(--wine);
-      border:1px solid var(--wine);
-      border-radius:2px;
-      box-shadow:none;
-      font-size:15px;
+    .activity span{
+      color:var(--muted);
+
+      line-height:1.5;
+
+      font-size:13px;
     }
 
-    .confirm:hover{
-      background:var(--wine-dark);
-      border-color:var(--wine-dark);
+    /* BUTTONS */
+
+    .navigation{
+      display:flex;
+
+      justify-content:
+        space-between;
+
+      gap:10px;
+
+      margin-top:34px;
     }
 
-    .result{
-      display:none;
-      margin-top:20px;
-      padding:18px;
-      background:#f7f2ec;
-      border:1px solid var(--line);
-      border-radius:2px;
+    button{
+      padding:13px 24px;
+
+      border:
+        1px solid var(--line);
+
+      background:white;
+
+      color:var(--text);
+
+      cursor:pointer;
+
+      font:inherit;
+
+      font-weight:600;
+
+      transition:.2s;
+    }
+
+    button:hover{
+      transform:translateY(-1px);
+    }
+
+    .primary{
+      background:var(--navy);
+
+      color:white;
+
+      border-color:var(--navy);
+    }
+
+    /* LAST QUESTION */
+
+    .final{
+      padding-top:18px;
+
       text-align:center;
-      line-height:1.75;
     }
 
-    .result.show{display:block}
-    .result strong{color:var(--wine)}
+    .final-label{
+      margin-bottom:14px;
 
-    .confetti{
-      position:fixed;
-      inset:0;
-      z-index:30;
-      overflow:hidden;
-      pointer-events:none;
+      color:var(--gold);
+
+      font-size:11px;
+
+      font-weight:bold;
+
+      letter-spacing:.18em;
+
+      text-transform:uppercase;
     }
 
-    .confetti span{
-      position:absolute;
-      top:-30px;
-      font-size:18px;
-      opacity:.65;
-      animation:fall 2.3s linear forwards;
+    .final h2{
+      max-width:650px;
+
+      margin:
+        0 auto 30px;
+
+      font-size:
+        clamp(36px,6vw,58px);
     }
 
-    @keyframes fall{
-      to{
-        transform:translateY(110vh) rotate(420deg);
-        opacity:0;
+    .yn{
+      display:flex;
+
+      justify-content:center;
+
+      align-items:center;
+
+      min-height:170px;
+
+      gap:17px;
+
+      flex-wrap:wrap;
+    }
+
+    #yesButton{
+      padding:
+        16px 38px;
+
+      background:var(--navy);
+
+      color:white;
+
+      border-color:var(--navy);
+
+      font-size:17px;
+
+      transform-origin:center;
+    }
+
+    #noButton{
+      padding:
+        15px 32px;
+
+      font-size:16px;
+
+      transform-origin:center;
+    }
+
+    .tease{
+      min-height:22px;
+
+      color:var(--muted);
+
+      font-style:italic;
+
+      font-size:12px;
+    }
+
+    /* SUMMARY */
+
+    #summary{
+      display:none;
+
+      margin-top:28px;
+
+      padding:22px;
+
+      background:white;
+
+      border-top:
+        1px solid var(--line);
+
+      border-bottom:
+        1px solid var(--line);
+
+      line-height:1.8;
+
+      text-align:left;
+    }
+
+    #summary.show{
+      display:block;
+    }
+
+    .privacy{
+      margin-top:23px;
+
+      text-align:center;
+
+      color:#888078;
+
+      font-size:11px;
+
+      line-height:1.6;
+    }
+
+    @media(max-width:650px){
+
+      body{
+        padding:8px;
       }
+
+      .grid,
+      .activity-grid{
+        grid-template-columns:
+          1fr;
+      }
+
+      .date-box{
+        align-items:flex-start;
+      }
+
+      .page{
+        min-height:100vh;
+      }
+
     }
 
-    @media(max-width:560px){
-      body{padding:12px}
-      .card{padding:34px 18px}
-      .modal-card{padding:32px 20px}
-      .time-choice{grid-template-columns:1fr}
-    }
   </style>
-
 </head>
+
 <body>
-  <div class="floating-hearts" id="floatingHearts"></div>
-  <div class="confetti" id="confetti"></div>
 
-  <main class="wrap">
-    <section class="card">
-      <div class="spark s1">✨</div>
-      <div class="spark s2">💞</div>
-      <div class="spark s3">🌷</div>
+  <main class="page">
 
-      <div class="characters">
-        <div class="char bunny">
-          <div class="ear left"></div><div class="ear right"></div>
-          <div class="face">
-            <div class="eye left"></div><div class="eye right"></div>
-            <div class="blush left"></div><div class="blush right"></div>
-            <div class="mouth"></div>
-          </div>
-          <div class="mini-heart">💕</div>
-        </div>
+    <header>
 
-        <div class="char bear">
-          <div class="ear left"></div><div class="ear right"></div>
-          <div class="face">
-            <div class="eye left"></div><div class="eye right"></div>
-            <div class="blush left"></div><div class="blush right"></div>
-            <div class="mouth"></div>
-          </div>
-          <div class="mini-heart">💗</div>
-        </div>
-
-        <div class="char cat">
-          <div class="ear left"></div><div class="ear right"></div>
-          <div class="face">
-            <div class="eye left"></div><div class="eye right"></div>
-            <div class="blush left"></div><div class="blush right"></div>
-            <div class="mouth"></div>
-          </div>
-          <div class="mini-heart">💖</div>
-        </div>
-      </div>
-
-      <p class="eyebrow">Eine Einladung für dich</p>
-      <h1>Ein Date in Seoul</h1>
-      <p class="subtitle">
-        Nur eine kleine Frage für morgen.<br>
-        Ich hoffe, du sagst Ja.
+      <p class="small-title">
+        4. September · Seoul
       </p>
 
-      <div class="question-box">
-        <p class="question">Möchtest du mit mir auf ein Date gehen?</p>
-        <div class="button-area">
-          <button id="yesBtn">Ja</button>
-          <button id="noBtn">Nein</button>
-        </div>
-        <div class="tiny-note" id="tease">Kleiner Hinweis: „Ja“ ist eine ausgezeichnete Wahl.</div>
+      <h1>
+        Ein Abend für uns.
+      </h1>
+
+      <p class="intro">
+        Ich habe ein paar Ideen vorbereitet.
+        Aber heute entscheidest du,
+        wo wir essen,
+        wo wir Kaffee trinken
+        und was wir danach machen.
+      </p>
+
+    </header>
+
+
+    <div class="progress">
+
+      <div class="active"></div>
+
+      <div></div>
+
+      <div></div>
+
+      <div></div>
+
+      <div></div>
+
+    </div>
+
+
+    <!-- STEP 1 -->
+
+    <section
+      class="step active"
+      data-step="0"
+    >
+
+      <div class="step-number">
+        01 · Datum
       </div>
+
+      <h2>
+        4. September 2026
+      </h2>
+
+      <p class="lead">
+        Unser Date findet in Gangnam statt.
+      </p>
+
+
+      <div class="date-box">
+
+        <div class="date-day">
+          04
+        </div>
+
+        <div class="date-text">
+
+          <strong>
+            September 2026
+          </strong>
+
+          <span>
+            Gangnam · Seoul
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div class="navigation">
+
+        <span></span>
+
+        <button
+          class="primary next"
+        >
+          Weiter
+        </button>
+
+      </div>
+
     </section>
+
+
+    <!-- STEP 2 RESTAURANT -->
+
+    <section
+      class="step"
+      data-step="1"
+    >
+
+      <div class="step-number">
+        02 · Essen
+      </div>
+
+      <h2>
+        Wo möchtest du essen?
+      </h2>
+
+      <p class="lead">
+        Du kannst die Restaurants
+        direkt auf Naver Maps ansehen.
+      </p>
+
+
+      <div
+        class="grid"
+        id="restaurantGrid"
+      >
+
+
+        <div
+          class="choice"
+          data-group="restaurant"
+          data-value="Chashyuming"
+        >
+
+          <div class="category">
+            Chinesisch
+          </div>
+
+          <div class="choice-title">
+            Chashyuming · 차슈밍
+          </div>
+
+          <div class="choice-text">
+            Chinesisches Restaurant
+            in Gangnam.
+          </div>
+
+          <a
+            class="map-link"
+            target="_blank"
+            href="https://map.naver.com/p/search/%EA%B0%95%EB%82%A8%EC%97%AD%20%EB%A7%9B%EC%A7%91%20%EC%A4%91%EC%8B%9D/place/18400193"
+          >
+            Auf Naver ansehen ↗
+          </a>
+
+        </div>
+
+
+        <div
+          class="choice"
+          data-group="restaurant"
+          data-value="Abanggung"
+        >
+
+          <div class="category">
+            Chinesisch
+          </div>
+
+          <div class="choice-title">
+            Abanggung · 아방궁
+          </div>
+
+          <div class="choice-text">
+            Eine weitere chinesische
+            Option in Gangnam.
+          </div>
+
+          <a
+            class="map-link"
+            target="_blank"
+            href="https://map.naver.com/p/search/%EA%B0%95%EB%82%A8%EC%97%AD%20%EB%A7%9B%EC%A7%91%20%EC%A4%91%EC%8B%9D/place/35553533"
+          >
+            Auf Naver ansehen ↗
+          </a>
+
+        </div>
+
+
+        <div
+          class="choice"
+          data-group="restaurant"
+          data-value="Jangso"
+        >
+
+          <div class="category">
+            Japanisch
+          </div>
+
+          <div class="choice-title">
+            Jangso · 장소
+          </div>
+
+          <div class="choice-text">
+            Sushi und japanische Küche.
+          </div>
+
+          <a
+            class="map-link"
+            target="_blank"
+            href="https://map.naver.com/p/search/%EA%B0%95%EB%82%A8%EC%97%AD%20%EB%A7%9B%EC%A7%91%20%EC%B4%88%EB%B0%A5/place/19896618"
+          >
+            Auf Naver ansehen ↗
+          </a>
+
+        </div>
+
+
+        <div
+          class="choice"
+          data-group="restaurant"
+          data-value="Naeko"
+        >
+
+          <div class="category">
+            Japanisch
+          </div>
+
+          <div class="choice-title">
+            Naeko · 나에코
+          </div>
+
+          <div class="choice-text">
+            Japanische Küche
+            in Gangnam.
+          </div>
+
+          <a
+            class="map-link"
+            target="_blank"
+            href="https://map.naver.com/p/search/%EA%B0%95%EB%82%A8%EC%97%AD%20%EB%A7%9B%EC%A7%91%20%EC%B4%88%EB%B0%A5/place/1115767815"
+          >
+            Auf Naver ansehen ↗
+          </a>
+
+        </div>
+
+
+        <div
+          class="choice"
+          data-group="restaurant"
+          data-value="Eunhaenggol"
+        >
+
+          <div class="category">
+            Japanisch
+          </div>
+
+          <div class="choice-title">
+            Eunhaenggol · 은행골
+          </div>
+
+          <div class="choice-text">
+            Sushi nahe Gangnam Station.
+          </div>
+
+          <a
+            class="map-link"
+            target="_blank"
+            href="https://map.naver.com/p/search/%EA%B0%95%EB%82%A8%EC%97%AD%20%EB%A7%9B%EC%A7%91%20%EC%B4%88%EB%B0%A5/place/1880609487"
+          >
+            Auf Naver ansehen ↗
+          </a>
+
+        </div>
+
+
+        <div
+          class="choice"
+          data-group="restaurant"
+          data-value="Andere"
+        >
+
+          <div class="category">
+            Andere Option
+          </div>
+
+          <div class="choice-title">
+            Etwas anderes
+          </div>
+
+          <div class="choice-text">
+            Du kannst selbst
+            ein Restaurant vorschlagen.
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div
+        class="other-box"
+        id="restaurantOther"
+      >
+
+        <input
+          id="restaurantOtherInput"
+          placeholder="Welches Restaurant?"
+        />
+
+      </div>
+
+
+      <div class="navigation">
+
+        <button class="prev">
+          Zurück
+        </button>
+
+        <button class="primary next">
+          Weiter
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- STEP 3 CAFE -->
+
+    <section
+      class="step"
+      data-step="2"
+    >
+
+      <div class="step-number">
+        03 · Kaffee
+      </div>
+
+      <h2>
+        Wo trinken wir Kaffee?
+      </h2>
+
+      <p class="lead">
+        Such dir ein Café aus.
+      </p>
+
+
+      <div class="grid">
+
+
+        <div
+          class="choice"
+          data-group="cafe"
+          data-value="Cafe Aranrobin"
+        >
+
+          <div class="category">
+            Café
+          </div>
+
+          <div class="choice-title">
+            Cafe Aranrobin
+          </div>
+
+          <div class="choice-text">
+            카페 아란로빈 강남역점
+          </div>
+
+          <a
+            class="map-link"
+            target="_blank"
+            href="https://map.naver.com/p/search/%EA%B0%95%EB%82%A8%EC%97%AD%20%EC%B9%B4%ED%8E%98/place/1926287321"
+          >
+            Auf Naver ansehen ↗
+          </a>
+
+        </div>
+
+
+        <div
+          class="choice"
+          data-group="cafe"
+          data-value="Gute Leute"
+        >
+
+          <div class="category">
+            Café
+          </div>
+
+          <div class="choice-title">
+            Gute Leute
+          </div>
+
+          <div class="choice-text">
+            Café in Gangnam.
+          </div>
+
+          <a
+            class="map-link"
+            target="_blank"
+            href="https://map.naver.com/p/search/%EA%B0%95%EB%82%A8%EC%97%AD%20gute%20leute/place/1093512009"
+          >
+            Auf Naver ansehen ↗
+          </a>
+
+        </div>
+
+
+        <div
+          class="choice"
+          data-group="cafe"
+          data-value="Selected Nix"
+        >
+
+          <div class="category">
+            Café
+          </div>
+
+          <div class="choice-title">
+            Selected Nix
+          </div>
+
+          <div class="choice-text">
+            셀렉티드닉스
+          </div>
+
+          <a
+            class="map-link"
+            target="_blank"
+            href="https://map.naver.com/p/search/%EA%B0%95%EB%82%A8%EC%97%AD%20%EC%B9%B4%ED%8E%98/place/1776798877"
+          >
+            Auf Naver ansehen ↗
+          </a>
+
+        </div>
+
+
+        <div
+          class="choice"
+          data-group="cafe"
+          data-value="Andere"
+        >
+
+          <div class="category">
+            Andere Option
+          </div>
+
+          <div class="choice-title">
+            Ein anderes Café
+          </div>
+
+          <div class="choice-text">
+            Du kannst selbst
+            ein Café auswählen.
+          </div>
+
+        </div>
+
+
+      </div>
+
+
+      <div
+        class="other-box"
+        id="cafeOther"
+      >
+
+        <input
+          id="cafeOtherInput"
+          placeholder="Welches Café?"
+        />
+
+      </div>
+
+
+      <div class="navigation">
+
+        <button class="prev">
+          Zurück
+        </button>
+
+        <button class="primary next">
+          Weiter
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- STEP 4 ACTIVITY -->
+
+    <section
+      class="step"
+      data-step="3"
+    >
+
+      <div class="step-number">
+        04 · Danach
+      </div>
+
+      <h2>
+        Was machen wir danach?
+      </h2>
+
+
+      <div class="activity-grid">
+
+
+        <div
+          class="activity"
+          data-group="activity"
+          data-value="Escape Room"
+        >
+
+          <strong>
+            Escape Room
+          </strong>
+
+          <span>
+            Zusammen rätseln
+            und Hinweise suchen.
+          </span>
+
+        </div>
+
+
+        <div
+          class="activity"
+          data-group="activity"
+          data-value="Andere"
+        >
+
+          <strong>
+            Etwas anderes?
+          </strong>
+
+          <span>
+            Du kannst selbst
+            etwas vorschlagen.
+          </span>
+
+        </div>
+
+
+      </div>
+
+
+      <div
+        class="other-box"
+        id="activityOther"
+      >
+
+        <input
+          id="activityOtherInput"
+          placeholder="Was möchtest du machen?"
+        />
+
+      </div>
+
+
+      <div class="navigation">
+
+        <button class="prev">
+          Zurück
+        </button>
+
+        <button class="primary next">
+          Letzte Frage
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- STEP 5 LAST QUESTION -->
+
+    <section
+      class="step"
+      data-step="4"
+    >
+
+      <div class="final">
+
+        <div class="final-label">
+          Eine letzte Frage
+        </div>
+
+        <h2>
+          Ich möchte danach
+          gern bei dir schlafen.
+          Darf ich?
+        </h2>
+
+
+        <div class="yn">
+
+          <button id="yesButton">
+            Ja
+          </button>
+
+          <button id="noButton">
+            Nein
+          </button>
+
+        </div>
+
+
+        <div
+          class="tease"
+          id="tease"
+        >
+          Nur eine kleine Frage.
+        </div>
+
+      </div>
+
+
+      <div id="summary"></div>
+
+
+      <div class="navigation">
+
+        <button class="prev">
+          Zurück
+        </button>
+
+        <button
+          class="primary"
+          id="submitButton"
+        >
+          Alles abschicken
+        </button>
+
+      </div>
+
+
+      <p class="privacy">
+        Deine Auswahl wird
+        an den Ersteller dieser Einladung
+        übermittelt.
+      </p>
+
+    </section>
+
+
   </main>
 
-  <div class="modal" id="dateModal" aria-hidden="true">
-    <div class="modal-card">
-      <button class="close" id="closeModal" aria-label="닫기">×</button>
 
-      <div style="text-align:center;font-family:Georgia,serif;font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:#7a2434;margin-bottom:16px">Rendezvous</div>
-      <h2 class="modal-title">Perfekt. Dann ist es ein Date.</h2>
-      <p class="modal-desc">Wann treffen wir uns morgen am Bahnhof Gangnam?</p>
-
-      
-      <div class="field">
-        <label>Uhrzeit</label>
-        <div class="time-choice">
-          <button class="time-btn" data-time="12:00">12:00</button>
-          <button class="time-btn" data-time="13:00">13:00</button>
-        </div>
-      </div>
-
-      <div class="place-card">
-        <div class="place-emoji">📍</div>
-        <div>
-          <div class="place-label">Treffpunkt</div>
-          <div class="place-name">Bahnhof Gangnam</div>
-        </div>
-      </div>
-
-      <div class="field">
-        <label for="message">Eine kleine Nachricht</label>
-        <textarea id="message" placeholder="Zum Beispiel: Ich freue mich auf morgen."></textarea>
-      </div>
-
-      <button class="confirm" id="confirmBtn">Date bestätigen</button>
-      <div class="result" id="result"></div>
-    </div>
-  </div>
 
   <script>
-    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzzsfei0QNy6IWJ3RGM1kMPMN2ExA3VTFAwJcep8PuFKop1lKwt23DeOdIuFpqbHxtW/exec";
 
-function sendChoice(action, value = "") {
-  fetch(GOOGLE_SCRIPT_URL, {
-    method: "POST",
-    mode: "no-cors",
-    headers: {
-      "Content-Type": "text/plain;charset=utf-8"
-    },
-    body: JSON.stringify({
+    /* ======================================
+
+       GOOGLE SHEET
+
+       여기에 지난번에 만든
+       Google Apps Script URL 넣기
+
+    ====================================== */
+
+
+    const GOOGLE_SCRIPT_URL =
+      "https://script.google.com/macros/s/AKfycbzzsfei0QNy6IWJ3RGM1kMPMN2ExA3VTFAwJcep8PuFKop1lKwt23DeOdIuFpqbHxtW/exec";
+
+
+    function sendChoice(
       action,
-      value,
-      page: location.href,
-      timestamp: new Date().toISOString()
-    })
-  });
-}
-    const floatingHearts = document.getElementById('floatingHearts');
-    const heartIcons = ['♡','♥','·'];
+      value = ""
+    ){
 
-    for(let i=0;i<38;i++){
-      const h = document.createElement('span');
-      h.className = 'heart';
-      h.textContent = heartIcons[Math.floor(Math.random()*heartIcons.length)];
-      h.style.left = Math.random()*100 + 'vw';
-      h.style.animationDuration = (6 + Math.random()*8) + 's';
-      h.style.animationDelay = (-Math.random()*12) + 's';
-      h.style.fontSize = (16 + Math.random()*23) + 'px';
-      floatingHearts.appendChild(h);
+      if(
+        GOOGLE_SCRIPT_URL.includes(
+          "PASTE_YOUR"
+        )
+      ){
+
+        console.log(
+          "Google Sheet 연결 전:",
+          action,
+          value
+        );
+
+        return;
+
+      }
+
+
+      fetch(
+        GOOGLE_SCRIPT_URL,
+        {
+
+          method:"POST",
+
+          mode:"no-cors",
+
+          headers:{
+            "Content-Type":
+              "text/plain;charset=utf-8"
+          },
+
+          body:JSON.stringify({
+
+            action:action,
+
+            value:value,
+
+            page:location.href,
+
+            timestamp:
+              new Date()
+              .toISOString()
+
+          })
+
+        }
+
+      );
+
     }
 
-    const yesBtn = document.getElementById('yesBtn');
-    const noBtn = document.getElementById('noBtn');
-    const tease = document.getElementById('tease');
-    const modal = document.getElementById('dateModal');
-    const closeModal = document.getElementById('closeModal');
+
+
+    /* ======================================
+
+       STATE
+
+    ====================================== */
+
+
+    const state = {
+
+      date:"2026-09-04",
+
+      restaurant:"",
+
+      cafe:"",
+
+      activity:"",
+
+      sleepAnswer:""
+
+    };
+
+
+
+    /* ======================================
+
+       STEPS
+
+    ====================================== */
+
+
+    let current = 0;
+
+
+    const steps =
+      document.querySelectorAll(
+        ".step"
+      );
+
+
+    const progress =
+      document.querySelectorAll(
+        ".progress div"
+      );
+
+
+    function showStep(index){
+
+      current = index;
+
+
+      steps.forEach(
+        (step,i)=>{
+
+          step.classList.toggle(
+            "active",
+            i === current
+          );
+
+        }
+      );
+
+
+      progress.forEach(
+        (bar,i)=>{
+
+          bar.classList.toggle(
+            "active",
+            i <= current
+          );
+
+        }
+      );
+
+
+      window.scrollTo(
+        {
+          top:0,
+          behavior:"smooth"
+        }
+      );
+
+
+      if(current === 4){
+
+        renderSummary();
+
+      }
+
+    }
+
+
+
+    document
+      .querySelectorAll(".next")
+      .forEach(
+
+        button=>{
+
+          button.addEventListener(
+            "click",
+            ()=>{
+
+
+              if(
+                current === 1 &&
+                !getRestaurant()
+              ){
+
+                alert(
+                  "Bitte wähle ein Restaurant."
+                );
+
+                return;
+
+              }
+
+
+              if(
+                current === 2 &&
+                !getCafe()
+              ){
+
+                alert(
+                  "Bitte wähle ein Café."
+                );
+
+                return;
+
+              }
+
+
+              if(
+                current === 3 &&
+                !getActivity()
+              ){
+
+                alert(
+                  "Bitte wähle eine Aktivität."
+                );
+
+                return;
+
+              }
+
+
+              showStep(
+                current + 1
+              );
+
+            }
+
+          );
+
+        }
+
+      );
+
+
+
+    document
+      .querySelectorAll(".prev")
+      .forEach(
+
+        button=>{
+
+          button.addEventListener(
+            "click",
+            ()=>{
+
+              showStep(
+                current - 1
+              );
+
+            }
+          );
+
+        }
+
+      );
+
+
+
+    /* ======================================
+
+       CHOICE SYSTEM
+
+    ====================================== */
+
+
+    function setupChoice(
+      group,
+      otherId
+    ){
+
+      document
+        .querySelectorAll(
+          `[data-group="${group}"]`
+        )
+        .forEach(
+
+          card=>{
+
+            card.addEventListener(
+              "click",
+              event=>{
+
+
+                if(
+                  event.target.closest("a")
+                ){
+
+                  return;
+
+                }
+
+
+                document
+                  .querySelectorAll(
+                    `[data-group="${group}"]`
+                  )
+                  .forEach(
+
+                    other=>{
+
+                      other
+                        .classList
+                        .remove(
+                          "selected"
+                        );
+
+                    }
+
+                  );
+
+
+                card
+                  .classList
+                  .add(
+                    "selected"
+                  );
+
+
+                const value =
+                  card.dataset.value;
+
+
+                state[group] =
+                  value;
+
+
+                const otherBox =
+                  document
+                  .getElementById(
+                    otherId
+                  );
+
+
+                if(otherBox){
+
+                  otherBox
+                    .classList
+                    .toggle(
+                      "show",
+                      value === "Andere"
+                    );
+
+                }
+
+
+                sendChoice(
+                  group + "_selected",
+                  value
+                );
+
+              }
+
+            );
+
+          }
+
+        );
+
+    }
+
+
+    setupChoice(
+      "restaurant",
+      "restaurantOther"
+    );
+
+
+    setupChoice(
+      "cafe",
+      "cafeOther"
+    );
+
+
+    setupChoice(
+      "activity",
+      "activityOther"
+    );
+
+
+
+    /* ======================================
+
+       GET VALUES
+
+    ====================================== */
+
+
+    function getRestaurant(){
+
+      if(
+        state.restaurant ===
+        "Andere"
+      ){
+
+        const value =
+          document
+            .getElementById(
+              "restaurantOtherInput"
+            )
+            .value
+            .trim();
+
+
+        return value
+          ? "Andere: " + value
+          : "";
+
+      }
+
+
+      return state.restaurant;
+
+    }
+
+
+
+    function getCafe(){
+
+      if(
+        state.cafe ===
+        "Andere"
+      ){
+
+        const value =
+          document
+            .getElementById(
+              "cafeOtherInput"
+            )
+            .value
+            .trim();
+
+
+        return value
+          ? "Andere: " + value
+          : "";
+
+      }
+
+
+      return state.cafe;
+
+    }
+
+
+
+    function getActivity(){
+
+      if(
+        state.activity ===
+        "Andere"
+      ){
+
+        const value =
+          document
+            .getElementById(
+              "activityOtherInput"
+            )
+            .value
+            .trim();
+
+
+        return value
+          ? "Andere: " + value
+          : "";
+
+      }
+
+
+      return state.activity;
+
+    }
+
+
+
+    /* ======================================
+
+       FINAL QUESTION
+
+    ====================================== */
+
+
+    const yesButton =
+      document
+        .getElementById(
+          "yesButton"
+        );
+
+
+    const noButton =
+      document
+        .getElementById(
+          "noButton"
+        );
+
+
+    const tease =
+      document
+        .getElementById(
+          "tease"
+        );
+
 
     let noCount = 0;
 
-    const teases = [
-      'Bist du sicher?',
-      'Vielleicht noch einmal überlegen?',
-      '„Ja“ sieht langsam ziemlich überzeugend aus.',
-      '„Nein“ wird immer kleiner.',
-      'Vielleicht ist das ein Zeichen.',
-      'Fast geschafft. Versuch es mit „Ja“.',
-      'Bevor „Nein“ ganz verschwindet …'
+
+    const messages = [
+
+      "Bist du sicher?",
+
+      "Vielleicht noch einmal überlegen?",
+
+      "Ja sieht langsam ziemlich gut aus.",
+
+      "Nein wird immer kleiner.",
+
+      "Vielleicht ist das ein Zeichen.",
+
+      "Noch einmal nachdenken?",
+
+      "Nein gibt langsam auf."
+
     ];
 
-    noBtn.addEventListener('click', () => {
-      sendChoice("answer", "Nein");
-      noCount++;
 
-      const noScale = Math.max(.12, 1 - noCount * .15);
-      const yesScale = Math.min(2.25, 1 + noCount * .16);
 
-      noBtn.style.transform =
-        `scale(${noScale}) rotate(${noCount % 2 ? '-4' : '4'}deg)`;
-      noBtn.style.opacity = Math.max(.18, 1 - noCount * .1);
+    noButton
+      .addEventListener(
+        "click",
+        ()=>{
 
-      yesBtn.style.transform = `scale(${yesScale})`;
-      yesBtn.style.boxShadow =
-        `0 ${12 + noCount*2}px ${28 + noCount*3}px rgba(255,63,142,.36)`;
 
-      tease.textContent =
-        teases[Math.min(noCount - 1, teases.length - 1)];
+          noCount++;
 
-      if(noCount >= 7){
-        noBtn.textContent = '🥺';
-        noBtn.style.pointerEvents = 'none';
-      }
-    });
 
-    function celebrate(){
-      const box = document.getElementById('confetti');
-      box.innerHTML = '';
-      const icons = ['♥','♡','✦'];
+          state.sleepAnswer =
+            "Nein";
 
-      for(let i=0;i<55;i++){
-        const c = document.createElement('span');
-        c.textContent = icons[Math.floor(Math.random()*icons.length)];
-        c.style.left = Math.random()*100 + 'vw';
-        c.style.animationDelay = (Math.random()*.8) + 's';
-        c.style.animationDuration = (1.6 + Math.random()*1.8) + 's';
-        box.appendChild(c);
-      }
 
-      setTimeout(() => box.innerHTML = '', 3500);
-    }
+          sendChoice(
+            "sleep_answer",
+            "Nein"
+          );
 
-    yesBtn.addEventListener('click', () => {
-      sendChoice("answer", "Ja");
 
-      celebrate();
-      modal.classList.add('show');
-      modal.setAttribute('aria-hidden','false');
-    });
+          const noScale =
+            Math.max(
+              .15,
+              1 - noCount * .14
+            );
 
-    closeModal.addEventListener('click', () => {
-      modal.classList.remove('show');
-      modal.setAttribute('aria-hidden','true');
-    });
 
-    modal.addEventListener('click', (e) => {
-      if(e.target === modal){
-        closeModal.click();
-      }
-    });
+          const yesScale =
+            Math.min(
+              2.2,
+              1 + noCount * .16
+            );
 
-    let selectedTime = '';
 
-    document.querySelectorAll('.time-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.time-btn').forEach(b => b.classList.remove('selected'));
-        btn.classList.add('selected');
-        selectedTime = btn.dataset.time;
+          noButton.style.transform =
+            `scale(${noScale})`;
 
-        sendChoice("time_selected", selectedTime);
-      });
-    });
 
-    document.getElementById('confirmBtn').addEventListener('click', () => {
-  const message = document.getElementById('message').value.trim();
-  const result = document.getElementById('result');
+          noButton.style.opacity =
+            Math.max(
+              .15,
+              1 - noCount * .1
+            );
 
-  if(!selectedTime){
-    result.classList.add('show');
-    result.innerHTML = 'Bitte wähle 12:00 oder 13:00.';
-    return;
-  }
 
-  sendChoice("date_confirmed", JSON.stringify({
-    time: selectedTime,
-    message: message
-  }));
+          yesButton.style.transform =
+            `scale(${yesScale})`;
 
-      const timeText = selectedTime === '12:00' ? '12:00' : '13:00';
 
-      result.classList.add('show');
-      result.innerHTML = `
-        <strong>Date bestätigt.</strong><br><br>
-        Morgen<br>
-        ⏰ ${timeText}<br>
-        Bahnhof Gangnam<br>
-        ${message ? `💌 “${message}”<br>` : ''}
-        <br>Bis morgen am Bahnhof Gangnam.
+          tease.textContent =
+            messages[
+              Math.min(
+                noCount - 1,
+                messages.length - 1
+              )
+            ];
+
+
+          if(
+            noCount >= 7
+          ){
+
+            noButton
+              .style
+              .pointerEvents =
+                "none";
+
+
+            noButton.textContent =
+              "...";
+
+          }
+
+
+          renderSummary();
+
+        }
+
+      );
+
+
+
+    yesButton
+      .addEventListener(
+        "click",
+        ()=>{
+
+
+          state.sleepAnswer =
+            "Ja";
+
+
+          sendChoice(
+            "sleep_answer",
+            "Ja"
+          );
+
+
+          tease.textContent =
+            "Dann ist der Plan komplett.";
+
+
+          renderSummary();
+
+        }
+
+      );
+
+
+
+    /* ======================================
+
+       SUMMARY
+
+    ====================================== */
+
+
+    function renderSummary(){
+
+      const restaurant =
+        getRestaurant() || "—";
+
+
+      const cafe =
+        getCafe() || "—";
+
+
+      const activity =
+        getActivity() || "—";
+
+
+      const sleep =
+        state.sleepAnswer ||
+        "Noch nicht beantwortet";
+
+
+      const box =
+        document
+          .getElementById(
+            "summary"
+          );
+
+
+      box.classList.add(
+        "show"
+      );
+
+
+      box.innerHTML = `
+
+        <strong>
+          Unser Plan
+        </strong>
+
+        <br><br>
+
+        04.09.2026 · Gangnam
+
+        <br>
+
+        Essen:
+        ${restaurant}
+
+        <br>
+
+        Café:
+        ${cafe}
+
+        <br>
+
+        Danach:
+        ${activity}
+
+        <br>
+
+        Letzte Antwort:
+        ${sleep}
+
       `;
 
-      localStorage.setItem('cuteDatePlan', JSON.stringify({
-        time: selectedTime,
-        place: '강남역',
-        message
-      }));
-
-      celebrate();
-    });
-
-    const saved = localStorage.getItem('cuteDatePlan');
-    if(saved){
-      try{
-        const p = JSON.parse(saved);
-        selectedTime = p.time || '';
-        document.querySelectorAll('.time-btn').forEach(btn => {
-          if(btn.dataset.time === selectedTime) btn.classList.add('selected');
-        });
-        document.getElementById('message').value = p.message || '';
-      }catch(e){}
     }
+
+
+
+    /* ======================================
+
+       FINAL SUBMIT
+
+    ====================================== */
+
+
+    document
+      .getElementById(
+        "submitButton"
+      )
+      .addEventListener(
+        "click",
+        ()=>{
+
+
+          const restaurant =
+            getRestaurant();
+
+
+          const cafe =
+            getCafe();
+
+
+          const activity =
+            getActivity();
+
+
+          if(
+            !restaurant ||
+            !cafe ||
+            !activity
+          ){
+
+            alert(
+              "Bitte überprüfe deine Auswahl."
+            );
+
+            return;
+
+          }
+
+
+          if(
+            !state.sleepAnswer
+          ){
+
+            alert(
+              "Bitte beantworte die letzte Frage."
+            );
+
+            return;
+
+          }
+
+
+          const finalPlan = {
+
+            date:
+              "2026-09-04",
+
+            location:
+              "Gangnam, Seoul",
+
+            restaurant:
+              restaurant,
+
+            cafe:
+              cafe,
+
+            activity:
+              activity,
+
+            sleepAnswer:
+              state.sleepAnswer
+
+          };
+
+
+          sendChoice(
+            "final_plan",
+            JSON.stringify(
+              finalPlan
+            )
+          );
+
+
+          const button =
+            document
+              .getElementById(
+                "submitButton"
+              );
+
+
+          button.textContent =
+            "Gesendet ✓";
+
+
+          button.disabled =
+            true;
+
+
+          button.style.opacity =
+            ".6";
+
+
+          renderSummary();
+
+        }
+
+      );
+
   </script>
+
 </body>
 </html>
