@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Date am 4. September</title>
+  <title>Unser Date · 4. September ♡</title>
 
   <style>
     :root{
-      --navy:#16202b;
-      --navy2:#202d3a;
-      --sand:#ede4d5;
-      --paper:#f8f4ed;
-      --gold:#b79a68;
-      --gold2:#d2bd94;
-      --text:#222;
-      --muted:#777069;
-      --line:#d9d0c4;
-      --white:#fff;
+      --rose:#c96c86;
+      --rose-dark:#a84e69;
+      --rose-soft:#f5dce5;
+      --lavender:#e8e0f4;
+      --cream:#fffaf6;
+      --paper:#fffefd;
+      --ink:#4a3a40;
+      --muted:#8d7780;
+      --line:#eadbe1;
+      --shadow:0 24px 70px rgba(110,70,85,.13);
     }
 
     *{
@@ -28,157 +28,198 @@
     body{
       margin:0;
       min-height:100%;
-      font-family:Arial, Helvetica, sans-serif;
     }
 
     body{
-      color:var(--text);
+      font-family:
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+
+      color:var(--ink);
 
       background:
         radial-gradient(
-          circle at 15% 15%,
-          rgba(210,189,148,.15),
+          circle at 10% 15%,
+          rgba(255,210,225,.65),
           transparent 25%
         ),
         radial-gradient(
-          circle at 90% 80%,
-          rgba(255,255,255,.05),
+          circle at 90% 15%,
+          rgba(230,217,250,.7),
+          transparent 26%
+        ),
+        radial-gradient(
+          circle at 80% 90%,
+          rgba(255,232,207,.55),
           transparent 25%
         ),
         linear-gradient(
-          145deg,
-          #111a23,
-          #1c2935 55%,
-          #16202b
+          140deg,
+          #fff8fb,
+          #f8f2fb 48%,
+          #fff8f3
         );
 
-      padding:30px 15px;
+      padding:26px 14px;
+      overflow-x:hidden;
+    }
+
+    .hearts{
+      position:fixed;
+      inset:0;
+      overflow:hidden;
+      pointer-events:none;
+      z-index:0;
+    }
+
+    .heart{
+      position:absolute;
+      bottom:-40px;
+      color:rgba(201,108,134,.18);
+      font-family:Georgia,serif;
+      animation:floatHeart linear infinite;
+    }
+
+    @keyframes floatHeart{
+      0%{
+        transform:translateY(0) rotate(0deg);
+        opacity:0;
+      }
+
+      15%{
+        opacity:.7;
+      }
+
+      85%{
+        opacity:.5;
+      }
+
+      100%{
+        transform:translateY(-115vh) rotate(25deg);
+        opacity:0;
+      }
     }
 
     .page{
+      position:relative;
+      z-index:2;
       width:min(900px,100%);
       margin:auto;
-
-      background:var(--paper);
-
-      border:1px solid rgba(255,255,255,.2);
-
-      box-shadow:
-        0 30px 90px rgba(0,0,0,.28);
-
-      min-height:700px;
+      background:rgba(255,254,253,.94);
+      border:1px solid rgba(255,255,255,.9);
+      border-radius:30px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      backdrop-filter:blur(12px);
     }
-
-    /* HEADER */
 
     header{
       padding:
-        clamp(35px,6vw,70px)
+        clamp(42px,7vw,76px)
         clamp(22px,6vw,60px)
-        35px;
+        42px;
+
+      text-align:center;
 
       background:
         linear-gradient(
-          135deg,
-          var(--navy),
-          var(--navy2)
+          145deg,
+          rgba(255,248,251,.96),
+          rgba(250,243,252,.96)
         );
-
-      color:white;
     }
 
-    .small-title{
-      margin:0 0 15px;
+    .mini-heart{
+      font-size:30px;
+      margin-bottom:14px;
+      animation:heartbeat 2s ease-in-out infinite;
+    }
 
-      color:var(--gold2);
+    @keyframes heartbeat{
+      0%,100%{
+        transform:scale(1);
+      }
 
+      50%{
+        transform:scale(1.12);
+      }
+    }
+
+    .eyebrow{
+      margin:0 0 14px;
+      color:var(--rose);
       font-size:11px;
-      font-weight:bold;
-
+      font-weight:800;
       letter-spacing:.22em;
-
       text-transform:uppercase;
     }
 
     h1{
       margin:0;
-
       font-family:
         Georgia,
         "Times New Roman",
         serif;
-
       font-weight:400;
-
-      font-size:
-        clamp(42px,7vw,72px);
-
-      line-height:1;
-
-      letter-spacing:-.04em;
+      font-size:clamp(43px,7vw,72px);
+      letter-spacing:-.045em;
+      line-height:1.04;
+      color:#4d3841;
     }
 
     .intro{
-      max-width:580px;
-
-      margin:22px 0 0;
-
-      color:#d7dce0;
-
-      line-height:1.7;
-
+      max-width:610px;
+      margin:22px auto 0;
+      color:var(--muted);
+      line-height:1.8;
       font-size:15px;
     }
 
-    /* PROGRESS */
-
     .progress{
       display:grid;
-
-      grid-template-columns:
-        repeat(5,1fr);
-
-      gap:7px;
-
+      grid-template-columns:repeat(5,1fr);
+      gap:8px;
       padding:
-        22px
+        21px
         clamp(22px,6vw,60px)
         0;
     }
 
-    .progress div{
-      height:3px;
-
-      background:#ded8ce;
-
-      transition:.25s;
+    .progress span{
+      height:4px;
+      background:#eee4e8;
+      border-radius:999px;
+      transition:.3s ease;
     }
 
-    .progress div.active{
-      background:var(--gold);
+    .progress span.active{
+      background:
+        linear-gradient(
+          90deg,
+          #dc93a8,
+          #bd7694
+        );
     }
-
-    /* STEPS */
 
     .step{
       display:none;
-
       padding:
-        40px
+        42px
         clamp(22px,6vw,60px)
         50px;
 
-      animation:fade .3s ease;
+      animation:fadeIn .3s ease;
     }
 
     .step.active{
       display:block;
     }
 
-    @keyframes fade{
+    @keyframes fadeIn{
       from{
         opacity:0;
-        transform:translateY(8px);
+        transform:translateY(9px);
       }
 
       to{
@@ -187,197 +228,167 @@
       }
     }
 
-    .step-number{
+    .step-label{
       margin-bottom:10px;
-
-      color:var(--gold);
-
+      color:var(--rose);
       font-size:11px;
-      font-weight:bold;
-
+      font-weight:800;
       letter-spacing:.15em;
-
       text-transform:uppercase;
     }
 
     h2{
       margin:0 0 12px;
-
       font-family:
         Georgia,
         "Times New Roman",
         serif;
-
+      font-size:clamp(31px,5vw,48px);
       font-weight:400;
-
-      font-size:
-        clamp(31px,5vw,48px);
-
       letter-spacing:-.025em;
+      color:#4c3941;
     }
 
     .lead{
-      margin:0 0 28px;
-
+      margin:0 0 29px;
       color:var(--muted);
-
-      line-height:1.7;
+      line-height:1.75;
     }
 
-    /* DATE */
-
-    .date-box{
+    .date-card{
       display:flex;
-
       align-items:center;
+      gap:23px;
+      padding:27px;
+      margin-top:26px;
+      border:1px solid var(--line);
+      border-radius:22px;
+      background:
+        linear-gradient(
+          145deg,
+          #fff,
+          #fff9fb
+        );
 
-      gap:22px;
-
-      padding:26px;
-
-      margin-top:28px;
-
-      border:
-        1px solid var(--line);
-
-      background:#fff;
+      box-shadow:
+        0 13px 35px
+        rgba(145,92,110,.07);
     }
 
-    .date-day{
-      font-family:
-        Georgia,
-        serif;
-
-      font-size:66px;
-
-      color:var(--navy);
+    .date-number{
+      min-width:90px;
+      font-family:Georgia,serif;
+      font-size:65px;
+      color:var(--rose);
+      line-height:1;
     }
 
-    .date-text strong{
+    .date-info strong{
       display:block;
-
-      font-family:
-        Georgia,
-        serif;
-
-      font-size:26px;
-
-      font-weight:400;
-
       margin-bottom:6px;
+      font-family:Georgia,serif;
+      font-size:26px;
+      font-weight:400;
     }
 
-    .date-text span{
+    .date-info span{
       color:var(--muted);
     }
-
-    /* CHOICES */
 
     .grid{
       display:grid;
-
       grid-template-columns:
-        repeat(2,1fr);
-
-      gap:14px;
+        repeat(2,minmax(0,1fr));
+      gap:15px;
     }
 
     .choice{
-      min-height:155px;
-
-      padding:20px;
-
-      background:white;
-
-      border:
-        1px solid var(--line);
-
-      cursor:pointer;
-
-      transition:.2s;
-
+      position:relative;
       display:flex;
-
       flex-direction:column;
+      min-height:165px;
+      padding:21px;
+      background:white;
+      border:1px solid var(--line);
+      border-radius:20px;
+      cursor:pointer;
+      transition:
+        transform .2s ease,
+        border .2s ease,
+        box-shadow .2s ease,
+        background .2s ease;
     }
 
     .choice:hover{
-      transform:translateY(-2px);
-
-      border-color:#b7aa99;
+      transform:translateY(-3px);
+      box-shadow:
+        0 13px 30px
+        rgba(130,82,100,.09);
     }
 
     .choice.selected{
-      border-color:var(--gold);
+      border-color:#d489a2;
+      background:
+        linear-gradient(
+          145deg,
+          #fff9fb,
+          #fdf5f8
+        );
 
       box-shadow:
-        inset 0 0 0 1px var(--gold);
+        inset 0 0 0 1px
+        #d489a2;
+    }
 
-      background:#fbf8f2;
+    .choice.selected::after{
+      content:"♥";
+      position:absolute;
+      top:15px;
+      right:17px;
+      color:var(--rose);
+      font-family:Georgia,serif;
     }
 
     .category{
       margin-bottom:8px;
-
-      color:var(--gold);
-
+      color:var(--rose);
       font-size:10px;
-
-      font-weight:bold;
-
+      font-weight:800;
       letter-spacing:.13em;
-
       text-transform:uppercase;
     }
 
     .choice-title{
-      margin-bottom:8px;
-
-      font-family:
-        Georgia,
-        serif;
-
+      margin-bottom:9px;
+      font-family:Georgia,serif;
       font-size:23px;
+      color:#49373e;
     }
 
-    .choice-text{
-      color:var(--muted);
-
-      font-size:13px;
-
-      line-height:1.55;
-
+    .choice-desc{
       flex:1;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.55;
     }
 
     .map-link{
+      display:inline-block;
       width:max-content;
-
       margin-top:16px;
-
-      color:var(--navy);
-
-      text-decoration:none;
-
+      color:var(--rose-dark);
       font-size:12px;
-
-      border-bottom:
-        1px solid currentColor;
+      text-decoration:none;
+      border-bottom:1px solid currentColor;
     }
-
-    /* OTHER */
 
     .other-box{
       display:none;
-
-      margin-top:14px;
-
-      padding:15px;
-
-      background:#eee8de;
-
-      border:
-        1px solid var(--line);
+      margin-top:15px;
+      padding:17px;
+      background:#fbf4f7;
+      border:1px solid var(--line);
+      border-radius:16px;
     }
 
     .other-box.show{
@@ -386,300 +397,304 @@
 
     input{
       width:100%;
-
-      padding:13px;
-
-      border:
-        1px solid #c8bdb0;
-
-      font:inherit;
-
-      outline:none;
-
+      padding:13px 14px;
+      border:1px solid #ddcbd3;
+      border-radius:12px;
       background:white;
+      color:var(--ink);
+      font:inherit;
+      outline:none;
     }
 
     input:focus{
-      border-color:var(--gold);
+      border-color:var(--rose);
+      box-shadow:
+        0 0 0 3px
+        rgba(201,108,134,.08);
     }
-
-    /* ACTIVITY */
 
     .activity-grid{
       display:grid;
-
-      grid-template-columns:
-        1fr 1fr;
-
-      gap:14px;
+      grid-template-columns:1fr 1fr;
+      gap:15px;
     }
 
     .activity{
-      padding:25px;
-
-      min-height:130px;
-
+      min-height:145px;
+      padding:24px;
+      border:1px solid var(--line);
+      border-radius:20px;
       background:white;
-
-      border:
-        1px solid var(--line);
-
       cursor:pointer;
+      transition:.2s;
+    }
+
+    .activity:hover{
+      transform:translateY(-3px);
     }
 
     .activity.selected{
-      border-color:var(--gold);
-
+      border-color:var(--rose);
+      background:#fff8fb;
       box-shadow:
-        inset 0 0 0 1px var(--gold);
+        inset 0 0 0 1px
+        var(--rose);
     }
 
     .activity strong{
       display:block;
-
-      margin-bottom:10px;
-
-      font-family:
-        Georgia,
-        serif;
-
-      font-size:24px;
-
+      margin-bottom:9px;
+      font-family:Georgia,serif;
+      font-size:25px;
       font-weight:400;
     }
 
     .activity span{
       color:var(--muted);
-
-      line-height:1.5;
-
       font-size:13px;
+      line-height:1.55;
     }
-
-    /* BUTTONS */
 
     .navigation{
       display:flex;
-
-      justify-content:
-        space-between;
-
-      gap:10px;
-
-      margin-top:34px;
+      justify-content:space-between;
+      gap:12px;
+      margin-top:33px;
     }
 
     button{
-      padding:13px 24px;
-
-      border:
-        1px solid var(--line);
-
-      background:white;
-
-      color:var(--text);
-
-      cursor:pointer;
-
       font:inherit;
-
-      font-weight:600;
-
-      transition:.2s;
+      font-weight:700;
+      cursor:pointer;
+      border-radius:999px;
+      transition:.2s ease;
     }
 
-    button:hover{
-      transform:translateY(-1px);
+    .button{
+      padding:13px 25px;
+      border:1px solid var(--line);
+      color:var(--ink);
+      background:white;
+    }
+
+    .button:hover{
+      transform:translateY(-2px);
     }
 
     .primary{
-      background:var(--navy);
-
       color:white;
+      border-color:var(--rose);
+      background:
+        linear-gradient(
+          135deg,
+          #dc8da6,
+          #bd6c88
+        );
 
-      border-color:var(--navy);
+      box-shadow:
+        0 9px 23px
+        rgba(193,103,133,.20);
     }
 
-    /* LAST QUESTION */
-
     .final{
-      padding-top:18px;
-
       text-align:center;
+      padding:20px 0 10px;
+    }
+
+    .final-decoration{
+      margin-bottom:13px;
+      font-size:36px;
     }
 
     .final-label{
       margin-bottom:14px;
-
-      color:var(--gold);
-
+      color:var(--rose);
       font-size:11px;
-
-      font-weight:bold;
-
-      letter-spacing:.18em;
-
+      font-weight:800;
+      letter-spacing:.2em;
       text-transform:uppercase;
     }
 
     .final h2{
-      max-width:650px;
-
-      margin:
-        0 auto 30px;
-
+      max-width:680px;
+      margin:0 auto 15px;
+      font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
       font-size:
-        clamp(36px,6vw,58px);
+        clamp(37px,6vw,58px);
+      line-height:1.16;
     }
 
-    .yn{
+    .final-sub{
+      max-width:500px;
+      margin:0 auto 25px;
+      color:var(--muted);
+      font-family:Georgia,serif;
+      font-style:italic;
+      line-height:1.65;
+    }
+
+    .yes-no-area{
       display:flex;
-
       justify-content:center;
-
       align-items:center;
-
-      min-height:170px;
-
-      gap:17px;
-
+      gap:14px;
+      min-height:115px;
       flex-wrap:wrap;
     }
 
-    #yesButton{
-      padding:
-        16px 38px;
-
-      background:var(--navy);
-
-      color:white;
-
-      border-color:var(--navy);
-
-      font-size:17px;
-
-      transform-origin:center;
-    }
-
-    #noButton{
-      padding:
-        15px 32px;
-
+    #finalYes,
+    #finalNo{
+      min-width:120px;
+      padding:15px 30px;
       font-size:16px;
-
-      transform-origin:center;
+      border:1px solid var(--line);
+      transition:
+        transform .2s ease,
+        box-shadow .2s ease,
+        background .2s ease;
     }
 
-    .tease{
-      min-height:22px;
+    #finalYes{
+      background:
+        linear-gradient(
+          135deg,
+          #dc89a3,
+          #bd6885
+        );
 
-      color:var(--muted);
-
-      font-style:italic;
-
-      font-size:12px;
+      border-color:transparent;
+      color:white;
+      box-shadow:
+        0 10px 25px
+        rgba(190,99,130,.18);
     }
 
-    /* SUMMARY */
-
-    #summary{
-      display:none;
-
-      margin-top:28px;
-
-      padding:22px;
-
+    #finalNo{
       background:white;
-
-      border-top:
-        1px solid var(--line);
-
-      border-bottom:
-        1px solid var(--line);
-
-      line-height:1.8;
-
-      text-align:left;
+      color:#68555d;
     }
 
-    #summary.show{
+    #finalYes.selected,
+    #finalNo.selected{
+      transform:scale(1.06);
+      box-shadow:
+        0 13px 30px
+        rgba(170,95,120,.2);
+    }
+
+    #finalNo.selected{
+      background:#f6f1f3;
+    }
+
+    .final-response{
+      min-height:25px;
+      color:var(--rose-dark);
+      font-family:Georgia,serif;
+      font-style:italic;
+      margin-top:8px;
+    }
+
+    .summary{
+      display:none;
+      margin-top:26px;
+      padding:23px;
+      border:1px solid var(--line);
+      border-radius:19px;
+      background:
+        linear-gradient(
+          145deg,
+          #fff,
+          #fff8fb
+        );
+
+      line-height:1.85;
+    }
+
+    .summary.show{
       display:block;
     }
 
+    .summary-title{
+      margin-bottom:10px;
+      font-family:Georgia,serif;
+      font-size:23px;
+      color:var(--rose-dark);
+    }
+
     .privacy{
-      margin-top:23px;
-
+      max-width:540px;
+      margin:24px auto 0;
       text-align:center;
-
-      color:#888078;
-
+      color:#998790;
       font-size:11px;
-
       line-height:1.6;
     }
 
-    @media(max-width:650px){
-
+    @media(max-width:680px){
       body{
         padding:8px;
       }
 
+      .page{
+        border-radius:22px;
+      }
+
       .grid,
       .activity-grid{
-        grid-template-columns:
-          1fr;
+        grid-template-columns:1fr;
       }
 
-      .date-box{
+      .date-card{
         align-items:flex-start;
       }
-
-      .page{
-        min-height:100vh;
-      }
-
     }
-
   </style>
 </head>
 
 <body>
 
+  <div
+    class="hearts"
+    id="hearts"
+  ></div>
+
+
   <main class="page">
 
     <header>
 
-      <p class="small-title">
-        4. September · Seoul
+      <div class="mini-heart">
+        ♡
+      </div>
+
+      <p class="eyebrow">
+        Eine kleine Einladung für dich
       </p>
 
       <h1>
-        Ein Abend für uns.
+        Unser Date am 4. September
       </h1>
 
       <p class="intro">
-        Ich habe ein paar Ideen vorbereitet.
-        Aber heute entscheidest du,
+        Ich habe ein paar Ideen für uns gesammelt.
+        Du darfst entscheiden,
         wo wir essen,
         wo wir Kaffee trinken
-        und was wir danach machen.
+        und was wir danach machen. ♡
       </p>
 
     </header>
 
 
     <div class="progress">
-
-      <div class="active"></div>
-
-      <div></div>
-
-      <div></div>
-
-      <div></div>
-
-      <div></div>
-
+      <span class="active"></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
     </div>
 
 
@@ -690,26 +705,26 @@
       data-step="0"
     >
 
-      <div class="step-number">
-        01 · Datum
+      <div class="step-label">
+        01 · Unser Date
       </div>
 
       <h2>
-        4. September 2026
+        Freitag, 4. September
       </h2>
 
       <p class="lead">
-        Unser Date findet in Gangnam statt.
+        Ein Abend in Gangnam.
+        Den Rest entscheidest du.
       </p>
 
+      <div class="date-card">
 
-      <div class="date-box">
-
-        <div class="date-day">
+        <div class="date-number">
           04
         </div>
 
-        <div class="date-text">
+        <div class="date-info">
 
           <strong>
             September 2026
@@ -729,9 +744,9 @@
         <span></span>
 
         <button
-          class="primary next"
+          class="button primary next"
         >
-          Weiter
+          Los geht's ♡
         </button>
 
       </div>
@@ -739,32 +754,28 @@
     </section>
 
 
-    <!-- STEP 2 RESTAURANT -->
+    <!-- STEP 2 -->
 
     <section
       class="step"
       data-step="1"
     >
 
-      <div class="step-number">
-        02 · Essen
+      <div class="step-label">
+        02 · Dinner
       </div>
 
       <h2>
-        Wo möchtest du essen?
+        Was möchtest du essen?
       </h2>
 
       <p class="lead">
-        Du kannst die Restaurants
-        direkt auf Naver Maps ansehen.
+        Such dir einen Ort aus.
+        Die Karte kannst du direkt über Naver öffnen.
       </p>
 
 
-      <div
-        class="grid"
-        id="restaurantGrid"
-      >
-
+      <div class="grid">
 
         <div
           class="choice"
@@ -780,14 +791,14 @@
             Chashyuming · 차슈밍
           </div>
 
-          <div class="choice-text">
-            Chinesisches Restaurant
-            in Gangnam.
+          <div class="choice-desc">
+            Chinesische Küche in Gangnam.
           </div>
 
           <a
             class="map-link"
             target="_blank"
+            rel="noopener"
             href="https://map.naver.com/p/search/%EA%B0%95%EB%82%A8%EC%97%AD%20%EB%A7%9B%EC%A7%91%20%EC%A4%91%EC%8B%9D/place/18400193"
           >
             Auf Naver ansehen ↗
@@ -810,14 +821,14 @@
             Abanggung · 아방궁
           </div>
 
-          <div class="choice-text">
-            Eine weitere chinesische
-            Option in Gangnam.
+          <div class="choice-desc">
+            Eine weitere chinesische Option.
           </div>
 
           <a
             class="map-link"
             target="_blank"
+            rel="noopener"
             href="https://map.naver.com/p/search/%EA%B0%95%EB%82%A8%EC%97%AD%20%EB%A7%9B%EC%A7%91%20%EC%A4%91%EC%8B%9D/place/35553533"
           >
             Auf Naver ansehen ↗
@@ -829,7 +840,7 @@
         <div
           class="choice"
           data-group="restaurant"
-          data-value="Jangso"
+          data-value="Gatden Sushi"
         >
 
           <div class="category">
@@ -837,16 +848,17 @@
           </div>
 
           <div class="choice-title">
-            Jangso · 장소
+            Gatden Sushi · 갓덴스시
           </div>
 
-          <div class="choice-text">
-            Sushi und japanische Küche.
+          <div class="choice-desc">
+            Sushi und japanische Küche in Gangnam.
           </div>
 
           <a
             class="map-link"
             target="_blank"
+            rel="noopener"
             href="https://map.naver.com/p/search/%EA%B0%95%EB%82%A8%EC%97%AD%20%EB%A7%9B%EC%A7%91%20%EC%B4%88%EB%B0%A5/place/19896618"
           >
             Auf Naver ansehen ↗
@@ -869,14 +881,14 @@
             Naeko · 나에코
           </div>
 
-          <div class="choice-text">
-            Japanische Küche
-            in Gangnam.
+          <div class="choice-desc">
+            Japanische Küche in Gangnam.
           </div>
 
           <a
             class="map-link"
             target="_blank"
+            rel="noopener"
             href="https://map.naver.com/p/search/%EA%B0%95%EB%82%A8%EC%97%AD%20%EB%A7%9B%EC%A7%91%20%EC%B4%88%EB%B0%A5/place/1115767815"
           >
             Auf Naver ansehen ↗
@@ -899,13 +911,14 @@
             Eunhaenggol · 은행골
           </div>
 
-          <div class="choice-text">
+          <div class="choice-desc">
             Sushi nahe Gangnam Station.
           </div>
 
           <a
             class="map-link"
             target="_blank"
+            rel="noopener"
             href="https://map.naver.com/p/search/%EA%B0%95%EB%82%A8%EC%97%AD%20%EB%A7%9B%EC%A7%91%20%EC%B4%88%EB%B0%A5/place/1880609487"
           >
             Auf Naver ansehen ↗
@@ -921,16 +934,15 @@
         >
 
           <div class="category">
-            Andere Option
+            Deine Idee
           </div>
 
           <div class="choice-title">
-            Etwas anderes
+            Etwas anderes ♡
           </div>
 
-          <div class="choice-text">
-            Du kannst selbst
-            ein Restaurant vorschlagen.
+          <div class="choice-desc">
+            Du kannst selbst ein Restaurant vorschlagen.
           </div>
 
         </div>
@@ -945,20 +957,24 @@
 
         <input
           id="restaurantOtherInput"
-          placeholder="Welches Restaurant?"
-        />
+          placeholder="Welches Restaurant möchtest du?"
+        >
 
       </div>
 
 
       <div class="navigation">
 
-        <button class="prev">
+        <button
+          class="button prev"
+        >
           Zurück
         </button>
 
-        <button class="primary next">
-          Weiter
+        <button
+          class="button primary next"
+        >
+          Weiter ♡
         </button>
 
       </div>
@@ -966,23 +982,23 @@
     </section>
 
 
-    <!-- STEP 3 CAFE -->
+    <!-- STEP 3 -->
 
     <section
       class="step"
       data-step="2"
     >
 
-      <div class="step-number">
+      <div class="step-label">
         03 · Kaffee
       </div>
 
       <h2>
-        Wo trinken wir Kaffee?
+        Danach noch ein Café?
       </h2>
 
       <p class="lead">
-        Such dir ein Café aus.
+        Such dir einen Ort für Kaffee und etwas Süßes aus.
       </p>
 
 
@@ -1003,13 +1019,14 @@
             Cafe Aranrobin
           </div>
 
-          <div class="choice-text">
+          <div class="choice-desc">
             카페 아란로빈 강남역점
           </div>
 
           <a
             class="map-link"
             target="_blank"
+            rel="noopener"
             href="https://map.naver.com/p/search/%EA%B0%95%EB%82%A8%EC%97%AD%20%EC%B9%B4%ED%8E%98/place/1926287321"
           >
             Auf Naver ansehen ↗
@@ -1032,13 +1049,14 @@
             Gute Leute
           </div>
 
-          <div class="choice-text">
-            Café in Gangnam.
+          <div class="choice-desc">
+            Eine Café-Option in Gangnam.
           </div>
 
           <a
             class="map-link"
             target="_blank"
+            rel="noopener"
             href="https://map.naver.com/p/search/%EA%B0%95%EB%82%A8%EC%97%AD%20gute%20leute/place/1093512009"
           >
             Auf Naver ansehen ↗
@@ -1061,13 +1079,14 @@
             Selected Nix
           </div>
 
-          <div class="choice-text">
+          <div class="choice-desc">
             셀렉티드닉스
           </div>
 
           <a
             class="map-link"
             target="_blank"
+            rel="noopener"
             href="https://map.naver.com/p/search/%EA%B0%95%EB%82%A8%EC%97%AD%20%EC%B9%B4%ED%8E%98/place/1776798877"
           >
             Auf Naver ansehen ↗
@@ -1083,20 +1102,18 @@
         >
 
           <div class="category">
-            Andere Option
+            Deine Idee
           </div>
 
           <div class="choice-title">
-            Ein anderes Café
+            Ein anderes Café ♡
           </div>
 
-          <div class="choice-text">
-            Du kannst selbst
-            ein Café auswählen.
+          <div class="choice-desc">
+            Du kannst selbst einen Ort auswählen.
           </div>
 
         </div>
-
 
       </div>
 
@@ -1108,20 +1125,24 @@
 
         <input
           id="cafeOtherInput"
-          placeholder="Welches Café?"
-        />
+          placeholder="Welches Café möchtest du?"
+        >
 
       </div>
 
 
       <div class="navigation">
 
-        <button class="prev">
+        <button
+          class="button prev"
+        >
           Zurück
         </button>
 
-        <button class="primary next">
-          Weiter
+        <button
+          class="button primary next"
+        >
+          Weiter ♡
         </button>
 
       </div>
@@ -1129,20 +1150,24 @@
     </section>
 
 
-    <!-- STEP 4 ACTIVITY -->
+    <!-- STEP 4 -->
 
     <section
       class="step"
       data-step="3"
     >
 
-      <div class="step-number">
+      <div class="step-label">
         04 · Danach
       </div>
 
       <h2>
         Was machen wir danach?
       </h2>
+
+      <p class="lead">
+        Ein bisschen Abenteuer oder deine eigene Idee?
+      </p>
 
 
       <div class="activity-grid">
@@ -1159,8 +1184,9 @@
           </strong>
 
           <span>
-            Zusammen rätseln
-            und Hinweise suchen.
+            Zusammen rätseln,
+            Hinweise suchen
+            und hoffentlich gemeinsam rauskommen.
           </span>
 
         </div>
@@ -1173,16 +1199,15 @@
         >
 
           <strong>
-            Etwas anderes?
+            Etwas anderes? ♡
           </strong>
 
           <span>
-            Du kannst selbst
-            etwas vorschlagen.
+            Du entscheidest,
+            was wir stattdessen machen.
           </span>
 
         </div>
-
 
       </div>
 
@@ -1195,19 +1220,23 @@
         <input
           id="activityOtherInput"
           placeholder="Was möchtest du machen?"
-        />
+        >
 
       </div>
 
 
       <div class="navigation">
 
-        <button class="prev">
+        <button
+          class="button prev"
+        >
           Zurück
         </button>
 
-        <button class="primary next">
-          Letzte Frage
+        <button
+          class="button primary next"
+        >
+          Eine letzte Frage ♡
         </button>
 
       </div>
@@ -1215,7 +1244,7 @@
     </section>
 
 
-    <!-- STEP 5 LAST QUESTION -->
+    <!-- STEP 5 -->
 
     <section
       class="step"
@@ -1224,24 +1253,31 @@
 
       <div class="final">
 
+        <div class="final-decoration">
+          ♡
+        </div>
+
         <div class="final-label">
-          Eine letzte Frage
+          Eine letzte kleine Frage
         </div>
 
         <h2>
-          Ich möchte danach
-          gern bei dir schlafen.
-          Darf ich?
+          Darf ich danach
+          bei dir schlafen?
         </h2>
 
+        <p class="final-sub">
+          Nur wenn du dich damit genauso wohlfühlst wie ich.
+        </p>
 
-        <div class="yn">
 
-          <button id="yesButton">
-            Ja
+        <div class="yes-no-area">
+
+          <button id="finalYes">
+            Ja ♡
           </button>
 
-          <button id="noButton">
+          <button id="finalNo">
             Nein
           </button>
 
@@ -1249,29 +1285,32 @@
 
 
         <div
-          class="tease"
-          id="tease"
-        >
-          Nur eine kleine Frage.
-        </div>
+          class="final-response"
+          id="finalResponse"
+        ></div>
 
       </div>
 
 
-      <div id="summary"></div>
+      <div
+        class="summary"
+        id="summary"
+      ></div>
 
 
       <div class="navigation">
 
-        <button class="prev">
+        <button
+          class="button prev"
+        >
           Zurück
         </button>
 
         <button
-          class="primary"
-          id="submitButton"
+          class="button primary"
+          id="submitAll"
         >
-          Alles abschicken
+          Unseren Plan senden ♡
         </button>
 
       </div>
@@ -1285,22 +1324,10 @@
 
     </section>
 
-
   </main>
 
 
-
   <script>
-
-    /* ======================================
-
-       GOOGLE SHEET
-
-       여기에 지난번에 만든
-       Google Apps Script URL 넣기
-
-    ====================================== */
-
 
     const GOOGLE_SCRIPT_URL =
       "https://script.google.com/macros/s/AKfycbzzsfei0QNy6IWJ3RGM1kMPMN2ExA3VTFAwJcep8PuFKop1lKwt23DeOdIuFpqbHxtW/exec";
@@ -1312,6 +1339,7 @@
     ){
 
       if(
+        !GOOGLE_SCRIPT_URL ||
         GOOGLE_SCRIPT_URL.includes(
           "PASTE_YOUR"
         )
@@ -1343,15 +1371,16 @@
 
           body:JSON.stringify({
 
-            action:action,
+            action,
 
-            value:value,
+            value,
 
-            page:location.href,
+            page:
+              location.href,
 
             timestamp:
               new Date()
-              .toISOString()
+                .toISOString()
 
           })
 
@@ -1362,17 +1391,83 @@
     }
 
 
+    /* =====================================
+       FLOATING HEARTS
+    ===================================== */
 
-    /* ======================================
+    const heartBox =
+      document.getElementById(
+        "hearts"
+      );
 
+
+    for(
+      let i = 0;
+      i < 24;
+      i++
+    ){
+
+      const heart =
+        document.createElement(
+          "span"
+        );
+
+
+      heart.className =
+        "heart";
+
+
+      heart.textContent =
+        Math.random() > .5
+          ? "♡"
+          : "♥";
+
+
+      heart.style.left =
+        Math.random() * 100
+        + "vw";
+
+
+      heart.style.fontSize =
+        (
+          13 +
+          Math.random() * 17
+        )
+        + "px";
+
+
+      heart.style.animationDuration =
+        (
+          8 +
+          Math.random() * 9
+        )
+        + "s";
+
+
+      heart.style.animationDelay =
+        (
+          -Math.random() * 12
+        )
+        + "s";
+
+
+      heartBox.appendChild(
+        heart
+      );
+
+    }
+
+
+    /* =====================================
        STATE
-
-    ====================================== */
-
+    ===================================== */
 
     const state = {
 
       date:"2026-09-04",
+
+      location:
+        "Gangnam, Seoul",
 
       restaurant:"",
 
@@ -1385,32 +1480,43 @@
     };
 
 
-
-    /* ======================================
-
-       STEPS
-
-    ====================================== */
-
+    /* =====================================
+       STEP SYSTEM
+    ===================================== */
 
     let current = 0;
 
 
     const steps =
-      document.querySelectorAll(
-        ".step"
-      );
+      [
+        ...document
+          .querySelectorAll(
+            ".step"
+          )
+      ];
 
 
-    const progress =
-      document.querySelectorAll(
-        ".progress div"
-      );
+    const bars =
+      [
+        ...document
+          .querySelectorAll(
+            ".progress span"
+          )
+      ];
 
 
-    function showStep(index){
+    function showStep(
+      index
+    ){
 
-      current = index;
+      current =
+        Math.max(
+          0,
+          Math.min(
+            index,
+            steps.length - 1
+          )
+        );
 
 
       steps.forEach(
@@ -1425,7 +1531,7 @@
       );
 
 
-      progress.forEach(
+      bars.forEach(
         (bar,i)=>{
 
           bar.classList.toggle(
@@ -1445,7 +1551,9 @@
       );
 
 
-      if(current === 4){
+      if(
+        current === 4
+      ){
 
         renderSummary();
 
@@ -1454,9 +1562,10 @@
     }
 
 
-
     document
-      .querySelectorAll(".next")
+      .querySelectorAll(
+        ".next"
+      )
       .forEach(
 
         button=>{
@@ -1472,7 +1581,7 @@
               ){
 
                 alert(
-                  "Bitte wähle ein Restaurant."
+                  "Bitte wähle zuerst ein Restaurant."
                 );
 
                 return;
@@ -1486,7 +1595,7 @@
               ){
 
                 alert(
-                  "Bitte wähle ein Café."
+                  "Bitte wähle zuerst ein Café."
                 );
 
                 return;
@@ -1500,7 +1609,7 @@
               ){
 
                 alert(
-                  "Bitte wähle eine Aktivität."
+                  "Bitte wähle zuerst eine Aktivität."
                 );
 
                 return;
@@ -1521,9 +1630,10 @@
       );
 
 
-
     document
-      .querySelectorAll(".prev")
+      .querySelectorAll(
+        ".prev"
+      )
       .forEach(
 
         button=>{
@@ -1544,17 +1654,13 @@
       );
 
 
-
-    /* ======================================
-
+    /* =====================================
        CHOICE SYSTEM
-
-    ====================================== */
-
+    ===================================== */
 
     function setupChoice(
       group,
-      otherId
+      otherBoxId
     ){
 
       document
@@ -1571,7 +1677,9 @@
 
 
                 if(
-                  event.target.closest("a")
+                  event.target.closest(
+                    "a"
+                  )
                 ){
 
                   return;
@@ -1587,22 +1695,18 @@
 
                     other=>{
 
-                      other
-                        .classList
-                        .remove(
-                          "selected"
-                        );
+                      other.classList.remove(
+                        "selected"
+                      );
 
                     }
 
                   );
 
 
-                card
-                  .classList
-                  .add(
-                    "selected"
-                  );
+                card.classList.add(
+                  "selected"
+                );
 
 
                 const value =
@@ -1614,26 +1718,26 @@
 
 
                 const otherBox =
-                  document
-                  .getElementById(
-                    otherId
+                  document.getElementById(
+                    otherBoxId
                   );
 
 
-                if(otherBox){
-
+                if(
                   otherBox
-                    .classList
-                    .toggle(
-                      "show",
-                      value === "Andere"
-                    );
+                ){
+
+                  otherBox.classList.toggle(
+                    "show",
+                    value === "Andere"
+                  );
 
                 }
 
 
                 sendChoice(
-                  group + "_selected",
+                  group +
+                  "_selected",
                   value
                 );
 
@@ -1666,13 +1770,97 @@
     );
 
 
+    /* =====================================
+       ANDERE 직접 입력값도 전송
+    ===================================== */
 
-    /* ======================================
+    document
+      .getElementById(
+        "restaurantOtherInput"
+      )
+      .addEventListener(
+        "change",
+        function(){
 
-       GET VALUES
+          const value =
+            this.value.trim();
 
-    ====================================== */
 
+          if(
+            value
+          ){
+
+            sendChoice(
+              "restaurant_other",
+              value
+            );
+
+          }
+
+        }
+
+      );
+
+
+    document
+      .getElementById(
+        "cafeOtherInput"
+      )
+      .addEventListener(
+        "change",
+        function(){
+
+          const value =
+            this.value.trim();
+
+
+          if(
+            value
+          ){
+
+            sendChoice(
+              "cafe_other",
+              value
+            );
+
+          }
+
+        }
+
+      );
+
+
+    document
+      .getElementById(
+        "activityOtherInput"
+      )
+      .addEventListener(
+        "change",
+        function(){
+
+          const value =
+            this.value.trim();
+
+
+          if(
+            value
+          ){
+
+            sendChoice(
+              "activity_other",
+              value
+            );
+
+          }
+
+        }
+
+      );
+
+
+    /* =====================================
+       FINAL VALUE FUNCTIONS
+    ===================================== */
 
     function getRestaurant(){
 
@@ -1700,7 +1888,6 @@
       return state.restaurant;
 
     }
-
 
 
     function getCafe(){
@@ -1731,7 +1918,6 @@
     }
 
 
-
     function getActivity(){
 
       if(
@@ -1760,198 +1946,128 @@
     }
 
 
-
-    /* ======================================
-
+    /* =====================================
        FINAL QUESTION
+    ===================================== */
 
-    ====================================== */
-
-
-    const yesButton =
-      document
-        .getElementById(
-          "yesButton"
-        );
-
-
-    const noButton =
-      document
-        .getElementById(
-          "noButton"
-        );
-
-
-    const tease =
-      document
-        .getElementById(
-          "tease"
-        );
-
-
-    let noCount = 0;
-
-
-    const messages = [
-
-      "Bist du sicher?",
-
-      "Vielleicht noch einmal überlegen?",
-
-      "Ja sieht langsam ziemlich gut aus.",
-
-      "Nein wird immer kleiner.",
-
-      "Vielleicht ist das ein Zeichen.",
-
-      "Noch einmal nachdenken?",
-
-      "Nein gibt langsam auf."
-
-    ];
-
-
-
-    noButton
-      .addEventListener(
-        "click",
-        ()=>{
-
-
-          noCount++;
-
-
-          state.sleepAnswer =
-            "Nein";
-
-
-          sendChoice(
-            "sleep_answer",
-            "Nein"
-          );
-
-
-          const noScale =
-            Math.max(
-              .15,
-              1 - noCount * .14
-            );
-
-
-          const yesScale =
-            Math.min(
-              2.2,
-              1 + noCount * .16
-            );
-
-
-          noButton.style.transform =
-            `scale(${noScale})`;
-
-
-          noButton.style.opacity =
-            Math.max(
-              .15,
-              1 - noCount * .1
-            );
-
-
-          yesButton.style.transform =
-            `scale(${yesScale})`;
-
-
-          tease.textContent =
-            messages[
-              Math.min(
-                noCount - 1,
-                messages.length - 1
-              )
-            ];
-
-
-          if(
-            noCount >= 7
-          ){
-
-            noButton
-              .style
-              .pointerEvents =
-                "none";
-
-
-            noButton.textContent =
-              "...";
-
-          }
-
-
-          renderSummary();
-
-        }
-
+    const finalYes =
+      document.getElementById(
+        "finalYes"
       );
 
 
-
-    yesButton
-      .addEventListener(
-        "click",
-        ()=>{
-
-
-          state.sleepAnswer =
-            "Ja";
-
-
-          sendChoice(
-            "sleep_answer",
-            "Ja"
-          );
-
-
-          tease.textContent =
-            "Dann ist der Plan komplett.";
-
-
-          renderSummary();
-
-        }
-
+    const finalNo =
+      document.getElementById(
+        "finalNo"
       );
 
 
+    const finalResponse =
+      document.getElementById(
+        "finalResponse"
+      );
 
-    /* ======================================
 
+    finalYes.addEventListener(
+      "click",
+      ()=>{
+
+        state.sleepAnswer =
+          "Ja";
+
+
+        finalYes.classList.add(
+          "selected"
+        );
+
+
+        finalNo.classList.remove(
+          "selected"
+        );
+
+
+        finalResponse.textContent =
+          "Dann freue ich mich noch ein bisschen mehr auf morgen. ♡";
+
+
+        sendChoice(
+          "sleep_answer",
+          "Ja"
+        );
+
+
+        renderSummary();
+
+      }
+
+    );
+
+
+    finalNo.addEventListener(
+      "click",
+      ()=>{
+
+        state.sleepAnswer =
+          "Nein";
+
+
+        finalNo.classList.add(
+          "selected"
+        );
+
+
+        finalYes.classList.remove(
+          "selected"
+        );
+
+
+        finalResponse.textContent =
+          "Alles gut. Unser Date bleibt trotzdem schön. ♡";
+
+
+        sendChoice(
+          "sleep_answer",
+          "Nein"
+        );
+
+
+        renderSummary();
+
+      }
+
+    );
+
+
+    /* =====================================
        SUMMARY
-
-    ====================================== */
-
+    ===================================== */
 
     function renderSummary(){
 
       const restaurant =
-        getRestaurant() || "—";
+        getRestaurant()
+        || "—";
 
 
       const cafe =
-        getCafe() || "—";
+        getCafe()
+        || "—";
 
 
       const activity =
-        getActivity() || "—";
+        getActivity()
+        || "—";
 
 
       const sleep =
-        state.sleepAnswer ||
-        "Noch nicht beantwortet";
+        state.sleepAnswer
+        || "Noch offen";
 
 
       const box =
-        document
-          .getElementById(
-            "summary"
-          );
+        document.getElementById(
+          "summary"
+        );
 
 
       box.classList.add(
@@ -1961,17 +2077,15 @@
 
       box.innerHTML = `
 
-        <strong>
-          Unser Plan
-        </strong>
-
-        <br><br>
+        <div class="summary-title">
+          Unser Date ♡
+        </div>
 
         04.09.2026 · Gangnam
 
         <br>
 
-        Essen:
+        Dinner:
         ${restaurant}
 
         <br>
@@ -1994,17 +2108,13 @@
     }
 
 
-
-    /* ======================================
-
+    /* =====================================
        FINAL SUBMIT
-
-    ====================================== */
-
+    ===================================== */
 
     document
       .getElementById(
-        "submitButton"
+        "submitAll"
       )
       .addEventListener(
         "click",
@@ -2043,7 +2153,7 @@
           ){
 
             alert(
-              "Bitte beantworte die letzte Frage."
+              "Bitte beantworte noch die letzte Frage."
             );
 
             return;
@@ -2051,13 +2161,13 @@
           }
 
 
-          const finalPlan = {
+          const result = {
 
             date:
-              "2026-09-04",
+              state.date,
 
             location:
-              "Gangnam, Seoul",
+              state.location,
 
             restaurant:
               restaurant,
@@ -2074,23 +2184,50 @@
           };
 
 
+          /* 각각 따로 전송 */
+
+          sendChoice(
+            "restaurant_final",
+            restaurant
+          );
+
+
+          sendChoice(
+            "cafe_final",
+            cafe
+          );
+
+
+          sendChoice(
+            "activity_final",
+            activity
+          );
+
+
+          sendChoice(
+            "sleep_answer_final",
+            state.sleepAnswer
+          );
+
+
+          /* 전체 결과 전송 */
+
           sendChoice(
             "final_plan",
             JSON.stringify(
-              finalPlan
+              result
             )
           );
 
 
           const button =
-            document
-              .getElementById(
-                "submitButton"
-              );
+            document.getElementById(
+              "submitAll"
+            );
 
 
           button.textContent =
-            "Gesendet ✓";
+            "Gesendet ♡";
 
 
           button.disabled =
@@ -2098,7 +2235,7 @@
 
 
           button.style.opacity =
-            ".6";
+            ".65";
 
 
           renderSummary();
